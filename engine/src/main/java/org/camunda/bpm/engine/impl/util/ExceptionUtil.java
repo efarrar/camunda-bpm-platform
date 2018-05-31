@@ -91,7 +91,7 @@ public class ExceptionUtil {
     for (SQLException ex: sqlExceptionList) {
       if (ex.getMessage().contains("constraint")
         || ex.getMessage().contains("violat")
-        || ex.getMessage().contains("duplicate")
+        || ex.getMessage().toLowerCase().contains("duplicate")
         || ex.getMessage().contains("ORA-00001")
         || ex.getMessage().contains("SQLCODE=-803, SQLSTATE=23505")) {
         return true;
