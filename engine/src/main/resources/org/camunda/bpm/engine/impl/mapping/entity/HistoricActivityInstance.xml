@@ -256,4 +256,19 @@
   <select id="selectHistoricActivityInstanceCountByNativeQuery" parameterType="java.util.Map" resultType="long">
     ${sql}
   </select>
+
+  <select id="selectHistoricActivityPage" resultMap="historicActivityInstanceResultMap" parameterType="java.util.Map" >
+    <bind name="maxResults" value="#{parameter.maxResults}" />
+    select * from ${prefix}ACT_HI_ACTINST RES
+    where
+    <if test="parameter.finishedAfter != null">
+      RES.END_TIME_ &gt;= #{finishedAfter}
+    </if>
+    <if test="parameter.finishedBefore != null">
+      and RES.END_TIME_ &lt;= #{finishedBefore}
+    </if>
+    ORDER BY RES.END_TIME_ ASC
+    LIMIT #{parameter.maxResults}
+  </select>
+
 </mapper>

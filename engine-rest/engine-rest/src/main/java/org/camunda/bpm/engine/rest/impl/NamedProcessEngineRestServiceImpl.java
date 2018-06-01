@@ -58,6 +58,7 @@ import org.camunda.bpm.engine.rest.VariableInstanceRestService;
 import org.camunda.bpm.engine.rest.dto.ProcessEngineDto;
 import org.camunda.bpm.engine.rest.exception.RestException;
 import org.camunda.bpm.engine.rest.history.HistoryRestService;
+import org.camunda.bpm.engine.rest.impl.optimize.OptimizeRestService;
 import org.camunda.bpm.engine.rest.spi.ProcessEngineProvider;
 
 @Path(NamedProcessEngineRestServiceImpl.PATH)
@@ -237,6 +238,11 @@ public class NamedProcessEngineRestServiceImpl extends AbstractProcessEngineRest
   @Path("/{name}" + ConditionRestService.PATH)
   public ConditionRestService getConditionRestService(@PathParam("name") String engineName) {
     return super.getConditionRestService(engineName);
+  }
+
+  @Path("/{name}/optimize")
+  public OptimizeRestService getOptimizeRestService(@PathParam("name") String engineName) {
+    return super.getOptimizeRestService(engineName);
   }
 
   @GET

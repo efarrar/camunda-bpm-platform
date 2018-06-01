@@ -77,6 +77,8 @@ public class DbSqlSessionFactory implements SessionFactory {
 
   public static final Map<String, String> databaseSpecificDaysComparator = new HashMap<String, String>();
 
+  public static final Map<String, String> databaseSpecificSimpleLimit = new HashMap<String, String>();
+
   static {
 
     String defaultOrderBy = "order by ${internalOrderBy}";
@@ -121,6 +123,8 @@ public class DbSqlSessionFactory implements SessionFactory {
     constants.put("constant.null.startTime", "null START_TIME_");
     constants.put("constant.varchar.cast", "'${key}'");
     dbSpecificConstants.put(H2, constants);
+
+    databaseSpecificSimpleLimit.put(H2, "LIMIT #{maxResults}");
 
     // mysql specific
     // use the same specific for mariadb since it based on mysql and work with the exactly same statements
